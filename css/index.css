@@ -4,15 +4,16 @@
 }
 
 .channel-header img {
-	top: 200px;
-	left: 30px;
 	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+	
 }
 
 .page-body{
-	
-margin: auto;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5%;
+	margin: auto;
+	padding-left: 10%;
+  	padding-right: 10%;
+  	padding-top: 5%;
 }
