@@ -3,9 +3,8 @@
     padding:0;  
 }
 .channel-header{
-width: 500px;
- height: 100%;
 
+ position:  absolute;
 
 }
 
