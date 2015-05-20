@@ -3,8 +3,8 @@
     padding:0;  
 }
 .channel-header{
-
-width: 100%;
+position:relative; 
+z-index:3;
 }
 
 
@@ -12,6 +12,6 @@ width: 100%;
 .channel-header img {
 top: 200px;
 left: 30px;
-position: absolute;
-
+position:relative; 
+ z-index:4;
 }
