@@ -9,8 +9,7 @@ function loadUserChannel() {
 	request.execute(displayChannel);
 }
 
-function displayChannel(response) {
-	alert(response.result.access_token);
+function displayChannel(response) {	
 	if ('error' in response) {
 		displayMessage(response.error.message);
 	} else {
@@ -72,30 +71,35 @@ function requestVideoPlaylist(playlistId, pageToken) {
 		var playlistItems = response.result.items;
 		if (playlistItems) {
 			
-			$('#video-container').append('<div class="media"><div class="media-left"><div><div class="media-body"></div></div>')
-			
 			$.each(playlistItems, function(index, item) {
-				displayResult(item.snippet);
+				displayResult(item);
 			});
 
-			$('#video-container').html('<nav><ul class="pager"><li class="previous"><a onclick="previousPage();"><span aria-hidden="true">&larr;</span> Older</a></li><li class="next disabled"><a onclick="nextPage();">Newer <span aria-hidden="true">&rarr;</span></a></li></ul></nav>');
+			$('#video-container').append('<nav><ul class="pager"><li class="previous"><a onclick="previousPage();"><span aria-hidden="true">&larr;</span> Older</a></li><li class="next disabled"><a onclick="nextPage();">Newer <span aria-hidden="true">&rarr;</span></a></li></ul></nav>');
 		
-			nextPageToken = response.result.nextPageToken;
+			/*nextPageToken = response.result.nextPageToken;
 			var nextDis = nextPageToken ? '' : 'disabled';
 			$('.next').css('class', "next" + nextDis);
 			
 			prevPageToken = response.result.prevPageToken
 			var prevDis = prevPageToken ? '' : 'disabled';
-			$('.previous').css('class', "previous" + prevDis);
+			$('.previous').css('class', "previous" + prevDis);*/
 		} else {
-			$('#video-container').html('<div class="alert alert-info" role="alert">Sorry, you have no uploaded videos :(</div>');
+			$('#video-container').append('<div class="alert alert-info" role="alert">Sorry, you have no uploaded videos :(</div>');
 		}
 	});
 }
 
-function displayResult(videoSnippet) {
-	$('.media-left').append('<a><img class="media-object" src="' + videoSnippet.thumbnails.meduim.url + '"></a>');
-	$('.media-body').append('<h4 class="media-heading">' + videoSnippet.title + '</h4>');
+function displayResult(item) {
+//	$('#video-container').append('<a><img class="media-object" src="' + item.snippet.thumbnails.meduim.url + '"></a>');
+	$('#video-container').append('<div class="media">' + 
+														'<div class="media-left media-top">' + 
+															'<a><img class="media-object" src="' + item.snippet.thumbnails.meduim.url + '"></a>' + 
+														'</div>' +
+														'<div class="media-body">' + 
+															'<h4 class="media-heading">' + item.snippet.title + '</h4>' + 
+														'</div>' +
+													'</div>');
 }
 
 function nextPage() {
