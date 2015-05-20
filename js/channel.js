@@ -27,7 +27,9 @@ function displayChannel(response) {
 		$('.page-header').css("background-image", "url(" + bannerImageUrl + ")");
 		$('.page-header').css("height", "25vw");
 		$('#channelThumbnail').attr("src", thumbnailImage);
-		$('#channelThumbnail').css({"border-radius": "50px"});
+		$('#channelThumbnail').css({"border-radius": "140px"});
+		$('.page-header').css("margin", "0px");
+		$('.page-header').css("padding", "0px");
 		
 		uploadsLoad(response);
 	}
@@ -69,7 +71,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
 
 		var playlistItems = response.result.items;
-		if (playlistItems) {
+		if (playlistItems.length > 0) {
 			
 			$.each(playlistItems, function(index, item) {
 				displayResult(item);
@@ -77,15 +79,15 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
 			$('#video-container').append('<nav><ul class="pager"><li class="previous"><a onclick="previousPage();"><span aria-hidden="true">&larr;</span> Older</a></li><li class="next disabled"><a onclick="nextPage();">Newer <span aria-hidden="true">&rarr;</span></a></li></ul></nav>');
 		
-			/*nextPageToken = response.result.nextPageToken;
+			nextPageToken = response.result.nextPageToken;
 			var nextDis = nextPageToken ? '' : 'disabled';
 			$('.next').css('class', "next" + nextDis);
 			
 			prevPageToken = response.result.prevPageToken
 			var prevDis = prevPageToken ? '' : 'disabled';
-			$('.previous').css('class', "previous" + prevDis);*/
+			$('.previous').css('class', "previous" + prevDis);
 		} else {
-			$('#video-container').append('<div class="alert alert-info" role="alert">Sorry, you have no uploaded videos :(</div>');
+			$('#video-container').append('<div class="alert alert-info" role="alert"><b>Sorry, you have no uploaded videos :(</b></div>');
 		}
 	});
 }
@@ -93,13 +95,13 @@ function requestVideoPlaylist(playlistId, pageToken) {
 function displayResult(item) {
 //	$('#video-container').append('<a><img class="media-object" src="' + item.snippet.thumbnails.meduim.url + '"></a>');
 	$('#video-container').append('<div class="media">' + 
-														'<div class="media-left media-top">' + 
-															'<a><img class="media-object" src="' + item.snippet.thumbnails.medium.url + '"></a>' + 
-														'</div>' +
-														'<div class="media-body">' + 
-															'<h4 class="media-heading">' + item.snippet.title + '</h4>' + 
-														'</div>' +
-													'</div>');
+									'<div class="media-left media-top">' + 
+										'<a><img class="media-object" src="' + item.snippet.thumbnails.medium.url + '"></a>' + 
+									'</div>' +
+									'<div class="media-body">' + 
+										'<h4 class="media-heading">' + item.snippet.title + '</h4>' + 
+									'</div>' +
+								'</div>');
 }
 
 function nextPage() {
