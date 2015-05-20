@@ -2,13 +2,17 @@
     margin:0;
     padding:0;  
 }
+.channel-header{
+width: 500px;
+ height: 600px;
+ position: relative
 
-.page-header ima {
-margin:0;
-padding:0;  
 }
+
+
+
 .channel-header img {
-top: 70px;
+top: 200px;
 left: 30px;
 position: absolute;
 
