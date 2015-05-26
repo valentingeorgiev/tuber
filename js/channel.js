@@ -1,6 +1,6 @@
 var channelId, subscriberCount, totalUploadViews, channelTitle,
 	thumbnailImage, bannerImageUrl, publishedAt, totalUploadViews,
-	viewCount, videoCount, description, playlistId, nextPageToken, prevPageToken, response;
+	viewCount, videoCount, description, playlistId, nextPageToken, prevPageToken;
 
 
 function loadUserChannel() {
@@ -8,6 +8,8 @@ function loadUserChannel() {
 		mine: true, part: 'id, contentDetails, statistics, snippet, brandingSettings'});   
 	request.execute(displayChannel);
 }
+
+var Response;
 
 function displayChannel(response) {	
 	if ('error' in response) {
@@ -31,11 +33,12 @@ function displayChannel(response) {
 		$('.page-header').css("margin", "0px");
 		$('.page-header').css("padding", "0px");
 		
-		uploadsLoad(response);
+		Response = response;
+		uploadsLoad();
 	}
 }
 
-function uploadsLoad(response) {
+function uploadsLoad() {
 	$('#uploads').addClass("active");
 	$('#playlists').removeClass("active");
 	$('#about').removeClass("active");
@@ -46,15 +49,11 @@ function uploadsLoad(response) {
 	$('#about-container').html('');
 	$('#upload-container').html('');
 	
-	playlistId = response.result.items[0].contentDetails.relatedPlaylists.uploads;
+	playlistId = Response.result.items[0].contentDetails.relatedPlaylists.uploads;
 	requestVideoPlaylist(playlistId);
 }
 
 function requestVideoPlaylist(playlistId, pageToken) {
-	$('#video-container').html('');
-	$('#playlist-container').html('');
-	$('#about-container').html('');
-	$('#upload-container').html('');
 
 	var requestOptions = {
 		playlistId: playlistId,
@@ -79,11 +78,11 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
 			$('#video-container').append('<nav><ul class="pager"><li class="previous"><a onclick="previousPage();"><span aria-hidden="true">&larr;</span> Older</a></li><li class="next disabled"><a onclick="nextPage();">Newer <span aria-hidden="true">&rarr;</span></a></li></ul></nav>');
 		
-			nextPageToken = response.result.nextPageToken;
+			nextPageToken = R.result.nextPageToken;
 			var nextDis = nextPageToken ? '' : 'disabled';
 			$('.next').css('class', "next" + nextDis);
 			
-			prevPageToken = response.result.prevPageToken
+			prevPageToken = Response.result.prevPageToken
 			var prevDis = prevPageToken ? '' : 'disabled';
 			$('.previous').css('class', "previous" + prevDis);
 		} else {
@@ -94,6 +93,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
 function displayResult(item) {
 //	$('#video-container').append('<a><img class="media-object" src="' + item.snippet.thumbnails.meduim.url + '"></a>');
+
 	$('#video-container').append('<div class="media">' + 
 									'<div class="media-left media-top">' + 
 										'<a><img class="media-object" src="' + item.snippet.thumbnails.medium.url + '"></a>' + 
@@ -103,6 +103,8 @@ function displayResult(item) {
 									'</div>' +
 								'</div>');
 }
+
+
 
 function nextPage() {
 	requestVideoPlaylist(playlistId, nextPageToken);
@@ -136,7 +138,7 @@ function loadPlaylists() {
 
 		var playlistList = response.result.items;
 
-		if (playlistList) {
+		if (playlistList.length > 0) {
 				$.each(playlistList, function(index, item) {
 					switch(item.status.privacyStatus) {
 						case "private":
@@ -160,7 +162,7 @@ function loadPlaylists() {
 													'</div>');
 				});
 			} else {
-				$('#playlist-container').html('<div class="alert alert-info" role="alert">Sorry, you have no video playlists :(</div>');
+				$('#playlist-container').append('<div class="alert alert-info" role="alert"><b>Sorry, you have no video playlists :(</b></div>');
 			}
 	});
 
@@ -172,7 +174,7 @@ function loadAbout() {
 	$('#playlists').removeClass("active");
 	$('#about').addClass("active");
 	$('#upload').removeClass("active");
-	
+
 	$('#video-container').html('');
 	$('#playlist-container').html('');
 	$('#about-container').html('');
