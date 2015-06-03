@@ -29,7 +29,7 @@ function displayChannel(response) {
 		$('.page-header').css("background-image", "url(" + bannerImageUrl + ")");
 		$('.page-header').css("height", "25vw");
 		$('#channelThumbnail').attr("src", thumbnailImage);
-		$('#channelThumbnail').css({"border-radius": "140px"});
+		//$('#channelThumbnail').css({"border-radius": "140px"});
 		$('.page-header').css("margin", "0px");
 		$('.page-header').css("padding", "0px");
 		
