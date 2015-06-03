@@ -9,8 +9,12 @@ function loadUpload() {
 	$('#about-container').html('');
 	$('#upload-container').html('');
 	
-	$('#upload-container').append('<label for="title">Title:</label><input id="title" type="text" value="Default Title">');
-	$('#upload-container').append('<label for="description">Description:</label><textarea id="description">Default description</textarea>');
+	//$('#upload-container').append('<label for="title">Title:</label><input id="title" type="text" value="Default Title">');
+	//$('#upload-container').append('<label for="description">Description:</label><textarea id="description">Default description</textarea>');
+	
+	$('#upload-container').append('<input type="text" class="form-control" id="title" placeholder="Title">');
+	$('#upload-container').append('<textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>');
+	
 	$('#upload-container').append('<label for="privacy-status">Privacy Status:</label><select id="privacy-status"><option>public</option><option>unlisted</option><option>private</option></select>');
 	$('#upload-container').append('<input input type="file" id="file" class="button" accept="video/*"><button id="button">Upload Video</button>');
 
