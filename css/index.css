@@ -4,8 +4,11 @@
 }
 
 .channel-header img {
+/*
 	top: 200px;
-	left: 30px;
+	left: 30px;*/
+	top: 1vw;
+	left: 1vw;
 	position: absolute;
 }
 
