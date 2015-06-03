@@ -120,7 +120,7 @@ UploadVideo.prototype.uploadFile = function(file) {
 		percentageComplete = Math.round((bytesUploaded * 100) / totalBytes);
 
     //  $('#upload-progress').attr('valuenow', percentageComplete);
-	  $('#upload-progress').html(percentageComplete + '%');
+	//  $('#upload-progress').html(percentageComplete + '%');
 $('#upload-container').append('<div class="progress">' +
 							'<div class="progress-bar" id="upload-progress" role="progressbar" aria-valuenow="' +
 								percentageComplete + 
@@ -130,7 +130,7 @@ $('#upload-container').append('<div class="progress">' +
 							'</div>');
 	  
 	  
-	  $('#upload-progress').detach();
+	  $('.progress').detach();
 	  
       $('.during-upload').show();
     }.bind(this),
