@@ -129,8 +129,7 @@ $('#upload-container').append('<div class="progress">' +
 							  '</div>' +
 							'</div>');
 	  
-	  
-	  $('.progress').detach();
+	  setInterval($('.progress').detach(), 3000);
 	  
       $('.during-upload').show();
     }.bind(this),
