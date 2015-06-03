@@ -15,9 +15,14 @@ function loadUpload() {
 	$('#upload-container').append('<input type="text" class="form-control" id="title" placeholder="Title">');
 	$('#upload-container').append('<textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>');
 	
-	$('#upload-container').append('<label for="privacy-status">Privacy Status:</label><select id="privacy-status"><option>public</option><option>unlisted</option><option>private</option></select>');
-	$('#upload-container').append('<input input type="file" id="file" class="button" accept="video/*"><button id="button">Upload Video</button>');
+	$('#upload-container').append('<select class="form-control" style="width: 25%;">' +
+									  '<option>public</option>' +
+									  '<option>unlisted</option>' +
+									  '<option>private</option>' +
+									'</select>');
 
+	$('#upload-container').append('<input class="btn btn-default" id="file" type="file" value="Submit" accept="video/*">');
+	$('#upload-container').append('<button class="btn btn-default" id="button">Upload Video</button>');
 	
 	uploadVideo();
 }
@@ -119,18 +124,9 @@ UploadVideo.prototype.uploadFile = function(file) {
 		var estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
 		percentageComplete = Math.round((bytesUploaded * 100) / totalBytes);
 
-    //  $('#upload-progress').attr('valuenow', percentageComplete);
-	//  $('#upload-progress').html(percentageComplete + '%');
-$('#upload-container').append('<div class="progress">' +
-							'<div class="progress-bar" id="upload-progress" role="progressbar" aria-valuenow="' +
-								percentageComplete + 
-								'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">' +
-								percentageComplete + '%' +
-							  '</div>' +
-							'</div>');
-	  
-	  setInterval($('.progress').detach(), 3000);
-	  
+      $('#upload-progress').attr('valuenow', percentageComplete);
+	  $('#upload-progress').html(percentageComplete + '%');
+
       $('.during-upload').show();
     }.bind(this),
     onComplete: function(data) {
