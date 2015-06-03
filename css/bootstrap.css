@@ -1146,7 +1146,7 @@ img {
   height: auto;
 }
 .img-circle {
-	padding: -50px;
+top: -70px;
   border-radius: 50%;
   max-width: 50%;
   height: auto;
