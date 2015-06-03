@@ -15,16 +15,16 @@ function loadUpload() {
 	$('#upload-container').append('<input type="text" class="form-control" id="title" placeholder="Title">');
 	$('#upload-container').append('<textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>');
 	
-	//$('#upload-container').append('<label for="privacy-status">Privacy Status:</label><select id="privacy-status"><option>public</option><option>unlisted</option><option>private</option></select>');
+	$('#upload-container').append('<label for="privacy-status">Privacy Status:</label><select id="privacy-status"><option>public</option><option>unlisted</option><option>private</option></select>');
 	//$('#upload-container').append('<input input type="file" id="file" class="button" accept="video/*">
 	//<button id="button">Upload Video</button>');
 
-	$('#upload-container').append('<select class="form-control" for="privacy-status" style="width: 25%;">' +
+	/*$('#upload-container').append('<select class="form-control" for="privacy-status" style="width: 25%;">' +
 									  '<option>public</option>' +
 									  '<option>unlisted</option>' +
 									  '<option>private</option>' +
 									'</select>');
-
+*/
 	$('#upload-container').append('<input input type="file" id="file" class="button" accept="video/*"><button id="button">Upload Video</button>');
 	
 	uploadVideo();
