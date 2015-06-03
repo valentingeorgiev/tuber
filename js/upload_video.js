@@ -124,7 +124,7 @@ UploadVideo.prototype.uploadFile = function(file) {
 $('#upload-container').append('<div class="progress">' +
 							'<div class="progress-bar" id="upload-progress" role="progressbar" aria-valuenow="' +
 								percentageComplete + 
-								'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 40%;">' +
+								'" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">' +
 								percentageComplete + '%' +
 							  '</div>' +
 							'</div>');
