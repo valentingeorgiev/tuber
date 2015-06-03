@@ -25,9 +25,7 @@ function loadUpload() {
 									  '<option>private</option>' +
 									'</select>');
 
-	$('#upload-container').append('<input input type="file" class="btn btn-default" id="file" accept="video/*">');
-	$('#upload-container').append('<button class="btn btn-default" id="button">Upload Video</button>');
-	
+	$('#upload-container').append('<input input type="file" id="file" class="button" accept="video/*"><button id="button">Upload Video</button>');
 	
 	uploadVideo();
 }
